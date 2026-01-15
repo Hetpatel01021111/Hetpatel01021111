@@ -6,9 +6,21 @@
 
 <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=28&pause=1000&color=6366F1&center=true&vCenter=true&random=false&width=800&lines=Building+the+Future+of+Logistics;AI+%2B+Security+%3D+Innovation;From+Code+to+Entrepreneurship" alt="Typing SVG" />
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/het-patel-1bb76a266)
-[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:het7660@gmail.com)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Hetpatel01021111)
+<a href="https://www.linkedin.com/in/het-patel-1bb76a266/">
+  <img src="https://img.shields.io/badge/-Het%20Patel-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn"/>
+</a>
+<a href="https://x.com/HetPatel1723342">
+  <img src="https://img.shields.io/badge/-@HetPatel1723342-000000?style=flat-square&logo=x&logoColor=white" alt="X"/>
+</a>
+<a href="https://www.instagram.com/het.p_a_t_e_l/">
+  <img src="https://img.shields.io/badge/-@het.p__a__t__e__l-E4405F?style=flat-square&logo=instagram&logoColor=white" alt="Instagram"/>
+</a>
+<a href="mailto:het7660@gmail.com">
+  <img src="https://img.shields.io/badge/-het7660@gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white" alt="Gmail"/>
+</a>
+<a href="https://github.com/Hetpatel01021111">
+  <img src="https://img.shields.io/badge/-Hetpatel01021111-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub"/>
+</a>
 
 </div>
 
@@ -16,29 +28,35 @@
 
 ## 🎯 About Me
 
-```python
-class HetPatel:
-    def __init__(self):
-        self.role = "CEO & Founder"
-        self.company = "ShipMitra"
-        self.education = "B.E. Computer Science @ BITS Pilani"
-        self.cgpa = 9.44
-        self.location = "India"
-        self.mission = "Merging AI innovation with cybersecurity to build scalable, secure tech"
-        
-    def current_focus(self):
-        return [
-            "🚢 Building ShipMitra - AI-driven logistics SaaS",
-            "🔬 ECC Optimization Research at BITS Pilani",
-            "🛡️ Advanced penetration testing & CTF competitions",
-            "🤖 Exploring Generative AI applications"
-        ]
-    
-    def life_philosophy(self):
-        return "Code with purpose, secure by design, innovate relentlessly"
-```
+<table>
+<tr>
+<td width="50%" valign="top">
 
-> 💡 **Mission**: Leading the intersection of AI engineering and cybersecurity to create intelligent, adaptive, and resilient digital ecosystems.
+### 👨‍💻 Who I Am
+| | |
+|---|---|
+| 🎭 **Role** | CEO & Founder |
+| 🏢 **Company** | ShipMitra |
+| 🎓 **Education** | B.E. Computer Science @ BITS Pilani |
+| 📊 **CGPA** | 9.44 |
+| 📍 **Location** | India |
+
+</td>
+<td width="50%" valign="top">
+
+### 🔥 Current Focus
+- 🚢 Building **ShipMitra** - AI-driven logistics SaaS
+- 🔬 **ECC Optimization Research** at BITS Pilani
+- 🛡️ Advanced **penetration testing** & CTF competitions
+- 🤖 Exploring **Generative AI** applications
+
+</td>
+</tr>
+</table>
+
+> 💡 **Mission**: Merging AI innovation with cybersecurity to build scalable, secure tech. Leading the intersection of AI engineering and cybersecurity to create intelligent, adaptive, and resilient digital ecosystems.
+
+> 🌟 **Philosophy**: *"Code with purpose, secure by design, innovate relentlessly"*
 
 ---
 
@@ -162,18 +180,33 @@ Pushing the boundaries of error correction with a cutting-edge 2D BCH+ML hybrid 
 
 <div align="center">
 
-<a href="https://github.com/Hetpatel01021111">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=Hetpatel01021111&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true"/>
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Hetpatel01021111&layout=compact&langs_count=8&theme=tokyonight&hide_border=true"/>
-</a>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=Hetpatel01021111&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true&cache_seconds=86400" />
+  <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api?username=Hetpatel01021111&show_icons=true&theme=default&include_all_commits=true&count_private=true&hide_border=true&cache_seconds=86400" />
+  <img height="180em" alt="Het's GitHub Stats" src="https://github-readme-stats.vercel.app/api?username=Hetpatel01021111&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true" />
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=Hetpatel01021111&layout=compact&langs_count=8&theme=tokyonight&hide_border=true&cache_seconds=86400" />
+  <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=Hetpatel01021111&layout=compact&langs_count=8&theme=default&hide_border=true&cache_seconds=86400" />
+  <img height="180em" alt="Top Languages" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Hetpatel01021111&layout=compact&langs_count=8&theme=tokyonight&hide_border=true" />
+</picture>
 
 </div>
 
 <div align="center">
 
-<a href="https://github.com/Hetpatel01021111">
-  <img src="https://streak-stats.demolab.com/?user=Hetpatel01021111&theme=tokyonight&hide_border=true" alt="GitHub Streak"/>
-</a>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-streak-stats.herokuapp.com/?user=Hetpatel01021111&theme=tokyonight&hide_border=true" />
+  <source media="(prefers-color-scheme: light)" srcset="https://github-readme-streak-stats.herokuapp.com/?user=Hetpatel01021111&theme=default&hide_border=true" />
+  <img alt="GitHub Streak" src="https://github-readme-streak-stats.herokuapp.com/?user=Hetpatel01021111&theme=tokyonight&hide_border=true" />
+</picture>
+
+</div>
+
+<div align="center">
+
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=Hetpatel01021111&theme=tokyo-night&hide_border=true&area=true" alt="GitHub Activity Graph" />
 
 </div>
 
@@ -181,21 +214,28 @@ Pushing the boundaries of error correction with a cutting-edge 2D BCH+ML hybrid 
 
 ## 🎯 Current Focus Areas
 
-```javascript
-const currentGoals = {
-    shortTerm: [
-        "Scale ShipMitra to 100+ enterprise clients",
-        "Publish ECC optimization research paper",
-        "Achieve OSCP certification"
-    ],
-    longTerm: [
-        "Build AI-powered security automation tools",
-        "Contribute to open-source cybersecurity projects",
-        "Mentor next-generation security researchers"
-    ],
-    passion: "Making the digital world safer, one line of code at a time"
-};
-```
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### ⚡ Short Term Goals
+- 📈 Scale **ShipMitra** to 100+ enterprise clients
+- 📝 Publish **ECC optimization** research paper
+- 🏆 Achieve **OSCP certification**
+
+</td>
+<td width="50%" valign="top">
+
+### 🚀 Long Term Vision
+- 🤖 Build **AI-powered security automation** tools
+- 🌐 Contribute to **open-source cybersecurity** projects
+- 👨‍🏫 Mentor **next-generation security researchers**
+
+</td>
+</tr>
+</table>
+
+> 💜 **Passion**: *"Making the digital world safer, one line of code at a time"*
 
 ---
 
@@ -211,9 +251,21 @@ I'm always excited to collaborate on innovative projects, discuss AI/security re
 
 <div align="center">
 
-**📧 Email**: het7660@gmail.com  
-**💼 LinkedIn**: [Het Patel](https://linkedin.com/in/het-patel-1bb76a266)  
-**📱 Phone**: +91 84695 61212
+<a href="https://www.linkedin.com/in/het-patel-1bb76a266/">
+  <img src="https://img.shields.io/badge/-Het%20Patel-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn"/>
+</a>
+<a href="https://x.com/HetPatel1723342">
+  <img src="https://img.shields.io/badge/-@HetPatel1723342-000000?style=flat-square&logo=x&logoColor=white" alt="X"/>
+</a>
+<a href="https://www.instagram.com/het.p_a_t_e_l/">
+  <img src="https://img.shields.io/badge/-@het.p__a__t__e__l-E4405F?style=flat-square&logo=instagram&logoColor=white" alt="Instagram"/>
+</a>
+<a href="mailto:het7660@gmail.com">
+  <img src="https://img.shields.io/badge/-het7660@gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white" alt="Gmail"/>
+</a>
+<a href="https://github.com/Hetpatel01021111">
+  <img src="https://img.shields.io/badge/-Hetpatel01021111-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub"/>
+</a>
 
 ### 🌟 "Code. Secure. Innovate. Repeat." 🌟
 
