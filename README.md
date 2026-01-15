@@ -4,9 +4,11 @@
 
 ### 🚀 CEO & Founder @ ShipMitra | AI Engineer | Security Researcher
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=1000&color=A855F7&center=true&vCenter=true&repeat=true&width=500&lines=Building+the+Future+of+Logistics+🚀;AI+%2B+Security+%3D+Innovation+🔐;Code.+Secure.+Innovate.+Repeat.+💻" alt="Typing SVG" />
+
+*Building the Future of Logistics* 🚀 | *AI + Security = Innovation* 🔐 | *Code. Secure. Innovate. Repeat.* 💻
 
 <br/>
+
 
 <a href="https://www.linkedin.com/in/het-patel-1bb76a266/">
   <img src="https://skillicons.dev/icons?i=linkedin" height="35"/>
@@ -49,14 +51,14 @@ BITS Pilani | CGPA: 9.44
 <td align="center" width="33%">
 
 **🏢 Current Role**<br/>
-CEO & Founder<br/>
+Student & CEO<br/>
 ShipMitra
 
 </td>
 <td align="center" width="33%">
 
 **📍 Location**<br/>
-India 🇮🇳
+Dubai, UAE ��
 
 </td>
 </tr>
