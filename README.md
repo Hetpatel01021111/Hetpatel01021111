@@ -23,6 +23,9 @@
 </a>&nbsp;&nbsp;
 <a href="https://github.com/Hetpatel01021111">
   <img src="https://skillicons.dev/icons?i=github" alt="GitHub" height="40"/>
+</a>&nbsp;&nbsp;
+<a href="https://portfolio-ten-mu-w8z0dqhewz.vercel.app/">
+  <img src="https://img.shields.io/badge/Portfolio-FF5722?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Portfolio" height="40"/>
 </a>
 
 </div>
@@ -31,6 +34,7 @@
 
 ## 🎯 About Me
 
+<div align="center">
 <table>
 <tr>
 <td width="50%" valign="top">
@@ -59,6 +63,7 @@ Location: India 🇮🇳
 </td>
 </tr>
 </table>
+</div>
 
 <div align="center">
 
@@ -70,6 +75,7 @@ Location: India 🇮🇳
 
 ## 🏆 Notable Achievements
 
+<div align="center">
 <table>
 <tr>
 <td width="50%" valign="top" align="center">
@@ -96,6 +102,7 @@ Location: India 🇮🇳
 </td>
 </tr>
 </table>
+</div>
 
 <div align="center">
 
@@ -168,6 +175,7 @@ Location: India 🇮🇳
 
 ## 💼 Professional Journey
 
+<div align="center">
 <table>
 <tr>
 <td>
@@ -187,11 +195,13 @@ Explored aerospace technology, documented findings, and analyzed data for real-w
 </td>
 </tr>
 </table>
+</div>
 
 ---
 
 ## 🔬 Featured Research
 
+<div align="center">
 <table>
 <tr>
 <td>
@@ -214,6 +224,7 @@ Pushing the boundaries of error correction with a cutting-edge **2D BCH+ML hybri
 </td>
 </tr>
 </table>
+</div>
 
 ---
 
@@ -235,6 +246,7 @@ Pushing the boundaries of error correction with a cutting-edge **2D BCH+ML hybri
 
 ## 🎯 Goals & Vision
 
+<div align="center">
 <table>
 <tr>
 <td width="50%" valign="top">
@@ -255,6 +267,7 @@ Pushing the boundaries of error correction with a cutting-edge **2D BCH+ML hybri
 </td>
 </tr>
 </table>
+</div>
 
 <div align="center">
 
@@ -283,6 +296,9 @@ Pushing the boundaries of error correction with a cutting-edge **2D BCH+ML hybri
 </a>&nbsp;
 <a href="mailto:het7660@gmail.com">
   <img src="https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white"/>
+</a>&nbsp;
+<a href="https://portfolio-ten-mu-w8z0dqhewz.vercel.app/">
+  <img src="https://img.shields.io/badge/Portfolio-Website-FF5722?style=for-the-badge&logo=google-chrome&logoColor=white"/>
 </a>
 
 <br/><br/>
