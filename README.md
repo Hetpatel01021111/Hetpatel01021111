@@ -1,7 +1,9 @@
 <div align="center">
 
-<!-- Header Banner -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=Het%20Patel&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=32&desc=CEO%20%26%20Founder%20@%20ShipMitra%20|%20AI%20Engineer%20|%20Security%20Researcher&descAlignY=52&descSize=18" width="100%"/>
+<!-- Header Title -->
+# 👋 Hello, I'm Het Patel
+
+### 🚀 CEO & Founder @ ShipMitra | AI Engineer | Security Researcher
 
 <!-- Typing Animation -->
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=1000&color=A855F7&center=true&vCenter=true&multiline=true&repeat=true&width=600&height=100&lines=Building+the+Future+of+Logistics+%F0%9F%9A%80;AI+%2B+Security+%3D+Innovation+%F0%9F%94%90;From+Code+to+Entrepreneurship+%F0%9F%92%BB" alt="Typing SVG" />
@@ -314,9 +316,6 @@ Pushing the boundaries of error correction with a cutting-edge **2D BCH+ML hybri
 ---
 
 <div align="center">
-
-<!-- Footer Banner -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=120&section=footer&fontSize=42&fontColor=fff&animation=twinkling" width="100%"/>
 
 **⭐ From [Het Patel](https://github.com/Hetpatel01021111) - Building the future, one commit at a time**
 
