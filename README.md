@@ -58,7 +58,7 @@ ShipMitra
 <td align="center" width="33%">
 
 **📍 Location**<br/>
-Dubai, UAE ��
+Dubai, UAE 
 
 </td>
 </tr>
