@@ -4,7 +4,7 @@
 
 ### 🚀 CEO & Founder @ ShipMitra | AI Engineer | Security Researcher
 
-<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=28&pause=1000&color=6366F1&center=true&vCenter=true&random=false&width=600&lines=Building+the+Future+of+Logistics;AI+%2B+Security+%3D+Innovation;From+Code+to+Entrepreneurship" alt="Typing SVG" />
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=28&pause=1000&color=6366F1&center=true&vCenter=true&random=false&width=800&lines=Building+the+Future+of+Logistics;AI+%2B+Security+%3D+Innovation;From+Code+to+Entrepreneurship" alt="Typing SVG" />
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/het-patel-1bb76a266)
 [![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:het7660@gmail.com)
@@ -162,14 +162,18 @@ Pushing the boundaries of error correction with a cutting-edge 2D BCH+ML hybrid 
 
 <div align="center">
 
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=Hetpatel01021111&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true"/>
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Hetpatel01021111&layout=compact&langs_count=8&theme=tokyonight"/>
+<a href="https://github.com/Hetpatel01021111">
+  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=Hetpatel01021111&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true"/>
+  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Hetpatel01021111&layout=compact&langs_count=8&theme=tokyonight&hide_border=true"/>
+</a>
 
 </div>
 
 <div align="center">
 
-[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=Hetpatel01021111&theme=tokyonight)](https://git.io/streak-stats)
+<a href="https://github.com/Hetpatel01021111">
+  <img src="https://streak-stats.demolab.com/?user=Hetpatel01021111&theme=tokyonight&hide_border=true" alt="GitHub Streak"/>
+</a>
 
 </div>
 
