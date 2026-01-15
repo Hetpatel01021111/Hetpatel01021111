@@ -1,164 +1,101 @@
 <div align="center">
 
-<!-- Header Title -->
-# 👋 Hello, I'm Het Patel
+# 👋 Hey, I'm Het Patel
 
 ### 🚀 CEO & Founder @ ShipMitra | AI Engineer | Security Researcher
 
-<!-- Typing Animation -->
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=1000&color=A855F7&center=true&vCenter=true&multiline=true&repeat=true&width=600&height=100&lines=Building+the+Future+of+Logistics+%F0%9F%9A%80;AI+%2B+Security+%3D+Innovation+%F0%9F%94%90;From+Code+to+Entrepreneurship+%F0%9F%92%BB" alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=1000&color=A855F7&center=true&vCenter=true&repeat=true&width=500&lines=Building+the+Future+of+Logistics+🚀;AI+%2B+Security+%3D+Innovation+🔐;Code.+Secure.+Innovate.+Repeat.+💻" alt="Typing SVG" />
 
-<!-- Social Icons using Skill Icons -->
-<br/><br/>
+<br/>
 
 <a href="https://www.linkedin.com/in/het-patel-1bb76a266/">
-  <img src="https://skillicons.dev/icons?i=linkedin" alt="LinkedIn" height="40"/>
-</a>&nbsp;&nbsp;
+  <img src="https://skillicons.dev/icons?i=linkedin" height="35"/>
+</a>&nbsp;
 <a href="https://x.com/HetPatel1723342">
-  <img src="https://skillicons.dev/icons?i=twitter" alt="X" height="40"/>
-</a>&nbsp;&nbsp;
+  <img src="https://skillicons.dev/icons?i=twitter" height="35"/>
+</a>&nbsp;
 <a href="https://www.instagram.com/het.p_a_t_e_l/">
-  <img src="https://skillicons.dev/icons?i=instagram" alt="Instagram" height="40"/>
-</a>&nbsp;&nbsp;
+  <img src="https://skillicons.dev/icons?i=instagram" height="35"/>
+</a>&nbsp;
 <a href="mailto:het7660@gmail.com">
-  <img src="https://skillicons.dev/icons?i=gmail" alt="Gmail" height="40"/>
-</a>&nbsp;&nbsp;
+  <img src="https://skillicons.dev/icons?i=gmail" height="35"/>
+</a>&nbsp;
 <a href="https://github.com/Hetpatel01021111">
-  <img src="https://skillicons.dev/icons?i=github" alt="GitHub" height="40"/>
-</a>&nbsp;&nbsp;
+  <img src="https://skillicons.dev/icons?i=github" height="35"/>
+</a>&nbsp;
 <a href="https://portfolio-ten-mu-w8z0dqhewz.vercel.app/">
-  <img src="https://img.shields.io/badge/Portfolio-FF5722?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Portfolio" height="40"/>
+  <img src="https://img.shields.io/badge/🌐_Portfolio-FF5722?style=for-the-badge" height="35"/>
 </a>
 
 </div>
 
 ---
 
-## 🎯 About Me
-
 <div align="center">
-<table>
+
+## 🎯 Quick Overview
+
+</div>
+
+<table align="center">
 <tr>
-<td width="50%" valign="top">
+<td align="center" width="33%">
 
-### 👨‍💻 Who I Am
-
-```yaml
-Name: Het Patel
-Role: CEO & Founder
-Company: ShipMitra
-Education: B.E. Computer Science @ BITS Pilani
-CGPA: 9.44
-Location: India 🇮🇳
-```
+**🎓 Education**<br/>
+B.E. Computer Science<br/>
+BITS Pilani | CGPA: 9.44
 
 </td>
-<td width="50%" valign="top">
+<td align="center" width="33%">
 
-### 🔥 Current Focus
+**🏢 Current Role**<br/>
+CEO & Founder<br/>
+ShipMitra
 
-- 🚢 Building **ShipMitra** - AI-driven logistics SaaS
-- 🔬 **ECC Optimization Research** at BITS Pilani
-- 🛡️ Advanced **penetration testing** & CTF competitions
-- 🤖 Exploring **Generative AI** applications
+</td>
+<td align="center" width="33%">
+
+**📍 Location**<br/>
+India 🇮🇳
 
 </td>
 </tr>
 </table>
-</div>
-
-<div align="center">
-
-> 💡 *"Merging AI innovation with cybersecurity to build scalable, secure tech"*
-
-</div>
 
 ---
 
-## 🏆 Notable Achievements
-
 <div align="center">
-<table>
-<tr>
-<td width="50%" valign="top" align="center">
-
-### 🏆 Hackathon Excellence
-
-| Rank | Event |
-|:---:|---|
-| 🥉 **3rd** | OrbitX 24-hour Hackathon (Web 3.0) |
-| **11th** | ACM 24-Hour CTF (Mar 2025) |
-| **13th** | RIFT Hackathon by GDG (Mar 2025) |
-
-</td>
-<td width="50%" valign="top" align="center">
-
-### 🔐 Cybersecurity Prowess
-
-| Achievement | Platform |
-|:---:|---|
-| **1294th Globally** | Hack The Box: Cyber Apocalypse |
-| **Tier 3 Hacker** | Hack The Box Platform |
-| **Top 30%** | TryHackMe Offensive Pentesting |
-
-</td>
-</tr>
-</table>
-</div>
-
-<div align="center">
-
-🧗 **Certified Tier III Mountain Climber** - *Because scaling mountains and scaling systems require the same mindset* 🏔️
-
-</div>
-
----
 
 ## 🛠️ Tech Stack
 
-<div align="center">
-
-### 💻 Languages & Core
+**Languages**
 <p>
 <img src="https://skillicons.dev/icons?i=python,js,ts,html,css,c,cpp&theme=dark" />
 </p>
 
-### 🚀 Frameworks & Libraries
+**Frameworks & Cloud**
 <p>
-<img src="https://skillicons.dev/icons?i=react,nextjs,nodejs,express,tailwind,firebase&theme=dark" />
+<img src="https://skillicons.dev/icons?i=react,nextjs,nodejs,express,tailwind,firebase,aws,gcp&theme=dark" />
 </p>
 
-### 🤖 AI/ML & Data
+**AI/ML & Security**
 <p>
-<img src="https://skillicons.dev/icons?i=tensorflow,pytorch&theme=dark" />
-<img src="https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white"/>
-<img src="https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white"/>
-</p>
-
-### 🛡️ Security & DevOps
-<p>
-<img src="https://skillicons.dev/icons?i=linux,bash,docker,aws,gcp,git&theme=dark" />
-</p>
-
-### � Tools
-<p>
-<img src="https://skillicons.dev/icons?i=vscode,vim,postman,figma&theme=dark" />
+<img src="https://skillicons.dev/icons?i=tensorflow,pytorch,linux,docker,git&theme=dark" />
 </p>
 
 </div>
 
 ---
 
-## 📊 GitHub Analytics
-
 <div align="center">
 
-<!-- GitHub Profile Summary Cards - More reliable than github-readme-stats -->
+## 📊 GitHub Analytics
+
 <a href="https://github.com/Hetpatel01021111">
   <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Hetpatel01021111&theme=tokyonight" width="100%"/>
 </a>
 
-<br/><br/>
+<br/>
 
 <a href="https://github.com/Hetpatel01021111">
   <img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=Hetpatel01021111&theme=tokyonight" width="32%"/>
@@ -166,146 +103,149 @@ Location: India 🇮🇳
   <img src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=Hetpatel01021111&theme=tokyonight&utcOffset=5.5" width="32%"/>
 </a>
 
+<br/>
 
-
-<!-- Contribution Graph using GitHub native stats -->
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=Hetpatel01021111&theme=tokyo-night&hide_border=true&area=true&custom_title=Contribution%20Graph" width="100%"/>
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=Hetpatel01021111&theme=tokyo-night&hide_border=true&area=true" width="100%"/>
 
 </div>
 
 ---
 
-## 💼 Professional Journey
-
 <div align="center">
-<table>
-<tr>
-<td>
 
-### 🚀 ShipMitra | CEO & Founder
-**Jan 2025 - Present**
+## 🏆 Achievements
 
-Building a **security-first logistics management SaaS platform** that automates shipping processes for seamless deliveries. Combining AI-driven innovation with enterprise-grade security architecture.
-
----
-
-### 🛰️ Agnirva Space Community | Space Systems Intern
-**Jan 2025**
-
-Explored aerospace technology, documented findings, and analyzed data for real-world space applications. Learned about essential space components and their applications.
-
-</td>
-</tr>
-</table>
 </div>
 
----
-
-## 🔬 Featured Research
-
-<div align="center">
-<table>
+<table align="center">
 <tr>
-<td>
+<td align="center" width="50%">
 
-### 🧮 ECC Optimization Research @ BITS Pilani
-**Feb 2025 - Present**
-
-Pushing the boundaries of error correction with a cutting-edge **2D BCH+ML hybrid system**:
-
-| Metric | Achievement |
+**🎮 Hackathons**
+| Rank | Event |
 |:---:|---|
-| ⚡ **3ns** | Fixed-latency decoding via pipelined architecture |
-| 🎯 **65%** | ML module area reduction using sparse lookup trees |
-| 🔒 **100%** | Side-channel resistant constant-time processing |
-| 📊 **80%** | Area reduction through shared Galois operations |
-| 🎛️ **6.5%** | Overhead with optimized 2D parity layout |
+| 🥉 3rd | MTC Hackathon (Nov 2025) |
+| 11th | ACM 24-Hour CTF |
+| 13th | RIFT by GDG |
 
-> **Impact**: Making hardware-level security more efficient and accessible for next-gen systems.
+</td>
+<td align="center" width="50%">
+
+**🔐 Cybersecurity**
+| Achievement | Platform |
+|:---:|---|
+| 1294th Global | HTB Cyber Apocalypse |
+| Tier 3 | Hack The Box |
+| Top 30% | TryHackMe |
 
 </td>
 </tr>
 </table>
-</div>
-
----
-
-## 📚 Certifications & Learning
 
 <div align="center">
 
-| Program | Organization | Period |
-|:---:|:---:|:---:|
-| 🤖 **GenAI Exchange** | Hack2Skill & Google | Apr 2025 - Present |
-| 🔐 **Tier 3 Hacker** | Hack The Box | Sep 2024 - Present |
-| 🧠 **IBM Granite Testing** | IBM | Feb 2025 |
-| ☁️ **AWS Security Model** | AWS | Mar 2025 |
-| 🎯 **Offensive Pentesting** | TryHackMe | Jun 2024 |
+🧗 **Tier III Mountain Climber** 🏔️
 
 </div>
 
 ---
 
-## 🎯 Goals & Vision
-
 <div align="center">
-<table>
+
+## 💼 Experience
+
+</div>
+
+<table align="center">
 <tr>
-<td width="50%" valign="top">
+<td align="center" width="50%">
 
-### ⚡ Short Term
-- 📈 Scale **ShipMitra** to 100+ clients
-- 📝 Publish **ECC research** paper
-- 🏆 Achieve **OSCP certification**
+**🚀 ShipMitra**<br/>
+CEO & Founder<br/>
+*Jan 2025 - Present*
+
+Security-first logistics SaaS
 
 </td>
-<td width="50%" valign="top">
+<td align="center" width="50%">
 
-### 🚀 Long Term
-- 🤖 Build **AI security automation** tools
-- 🌐 Contribute to **open-source security**
-- 👨‍🏫 Mentor **future researchers**
+**🛰️ Agnirva Space**<br/>
+Space Systems Intern<br/>
+*Jan 2025*
+
+Aerospace research & analysis
 
 </td>
 </tr>
 </table>
-</div>
+
+---
 
 <div align="center">
 
-> 💜 *"Making the digital world safer, one line of code at a time"*
+## 🔬 Research
+
+**ECC Optimization @ BITS Pilani**
+
+| ⚡ 3ns | 🎯 65% | 🔒 100% | 📊 80% |
+|:---:|:---:|:---:|:---:|
+| Latency | ML Area ↓ | Side-channel Safe | Area ↓ |
+
+*2D BCH+ML hybrid error correction system*
 
 </div>
 
 ---
+
+<div align="center">
+
+## 📜 Certifications
+
+| 🤖 GenAI Exchange | 🔐 HTB Tier 3 | 🧠 IBM Granite | ☁️ AWS Security | 🎯 OSCP Path |
+|:---:|:---:|:---:|:---:|:---:|
+| Google | Hack The Box | IBM | AWS | TryHackMe |
+
+</div>
+
+---
+
+<div align="center">
+
+## 🎯 Goals
+
+| ⚡ Short Term | 🚀 Long Term |
+|:---:|:---:|
+| Scale ShipMitra to 100+ clients | Build AI security automation |
+| Publish ECC research paper | Open-source contributions |
+| Achieve OSCP certification | Mentor future researchers |
+
+</div>
+
+---
+
+<div align="center">
 
 ## 🤝 Let's Connect
 
-<div align="center">
-
-<p>I'm always excited to collaborate on innovative projects, discuss AI/security research, or explore entrepreneurship opportunities!</p>
-
-<br/>
-
 <a href="https://www.linkedin.com/in/het-patel-1bb76a266/">
-  <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
+  <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
 </a>&nbsp;
 <a href="https://x.com/HetPatel1723342">
-  <img src="https://img.shields.io/badge/X-Follow-000000?style=for-the-badge&logo=x&logoColor=white"/>
+  <img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white"/>
 </a>&nbsp;
 <a href="https://www.instagram.com/het.p_a_t_e_l/">
-  <img src="https://img.shields.io/badge/Instagram-Follow-E4405F?style=for-the-badge&logo=instagram&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"/>
 </a>&nbsp;
 <a href="mailto:het7660@gmail.com">
-  <img src="https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white"/>
 </a>&nbsp;
 <a href="https://portfolio-ten-mu-w8z0dqhewz.vercel.app/">
-  <img src="https://img.shields.io/badge/Portfolio-Website-FF5722?style=for-the-badge&logo=google-chrome&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Portfolio-FF5722?style=for-the-badge&logo=google-chrome&logoColor=white"/>
 </a>
 
 <br/><br/>
 
-### 🌟 *"Code. Secure. Innovate. Repeat."* 🌟
+> 💜 *"Making the digital world safer, one line of code at a time"*
 
 <br/>
 
@@ -316,6 +256,9 @@ Pushing the boundaries of error correction with a cutting-edge **2D BCH+ML hybri
 ---
 
 <div align="center">
+
+<!-- Footer Wave -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" width="100%"/>
 
 **⭐ From [Het Patel](https://github.com/Hetpatel01021111) - Building the future, one commit at a time**
 
