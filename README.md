@@ -29,7 +29,7 @@
 
 ---
 
-## <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30"> About Me
+## 🎯 About Me
 
 <table>
 <tr>
@@ -68,7 +68,7 @@ Location: India 🇮🇳
 
 ---
 
-## <img src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="30"> Notable Achievements
+## 🏆 Notable Achievements
 
 <table>
 <tr>
@@ -105,7 +105,7 @@ Location: India 🇮🇳
 
 ---
 
-## <img src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif" width="30"> Tech Stack
+## 🛠️ Tech Stack
 
 <div align="center">
 
@@ -140,7 +140,7 @@ Location: India 🇮🇳
 
 ---
 
-## <img src="https://media.giphy.com/media/cj87CxfRtrUifF3Ryk/giphy.gif" width="30"> GitHub Analytics
+## 📊 GitHub Analytics
 
 <div align="center">
 
@@ -157,12 +157,7 @@ Location: India 🇮🇳
   <img src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=Hetpatel01021111&theme=tokyonight&utcOffset=5.5" width="32%"/>
 </a>
 
-<br/><br/>
 
-<!-- GitHub Trophies -->
-<img src="https://github-profile-trophy.vercel.app/?username=Hetpatel01021111&theme=tokyonight&no-frame=true&no-bg=false&column=7&margin-w=5" width="100%"/>
-
-<br/><br/>
 
 <!-- Contribution Graph using GitHub native stats -->
 <img src="https://github-readme-activity-graph.vercel.app/graph?username=Hetpatel01021111&theme=tokyo-night&hide_border=true&area=true&custom_title=Contribution%20Graph" width="100%"/>
