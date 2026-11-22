@@ -104,7 +104,7 @@ def count_up(value, label, size, fill, begin):
         return (f'<text x="22" y="112" font-family="{SERIF}" font-size="{size}" fill="{fill}">'
                 f'{number}{tail}</text>')
 
-    match = re.fullmatch(r"(\$?)([0-9][0-9,]*)([KMB]?)", value)
+    match = re.fullmatch(r"(\$?)([0-9][0-9,]*)([KMBk]?\+?)", value)
     if static_mode() or match is None:
         return frame(value)
 
