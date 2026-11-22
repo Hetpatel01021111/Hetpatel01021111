@@ -1,0 +1,10 @@
+{
+  "company": "ShipMitra",
+  "currency": "USD",
+  "basis": "investment_offer",
+  "offer_status": "received",
+  "investment_amount": 200000,
+  "equity_percent": 22,
+  "display_value": "$909K",
+  "is_funding_raised": false
+}
