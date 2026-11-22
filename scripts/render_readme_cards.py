@@ -2,14 +2,15 @@
 
 import argparse
 import re
+from calendar import monthrange
 from datetime import date
 from pathlib import Path
 
 from .fetch_contributions import PROFILE, load_snapshot
 from .startup import read_metrics, read_valuation
 from .svg_art import (
-    BLUE, INK, INK_SOFT, MONO, MUTED, PAPER, PAPER_DEEP, RED, ROOT, RULE, SANS,
-    SERIF, YELLOW, static_mode, svg, text, timing,
+    ACCENT, BLUE, INK, INK_SOFT, MONO, MUTED, PAPER, PAPER_DEEP, PARTIAL, RED, ROOT,
+    RULE, SANS, SERIF, YELLOW, static_mode, svg, text, timing,
 )
 
 
@@ -19,7 +20,7 @@ TILE_WIDTH = COLUMN - 8
 BOTTOM = 12
 WHITE = "#ffffff"
 DISPLAY_FONTS = ("serif", "italic", "sans", "mono")
-HEAT_COLORS = (PAPER_DEEP, "#c8d3ff", "#94a8ff", "#6280ff", BLUE, "#1a3be0")
+HEAT_COLORS = (PAPER_DEEP, "var(--heat-1)", "var(--heat-2)", "var(--heat-3)", "var(--heat-4)")
 PROJECTS = (
     ("FinBot", ("Personal finance tools for tracking", "transactions, budgeting, and", "AI-powered spending insights."), "JavaScript", BLUE),
     ("AeroTrackAI", ("Uses live flight data to forecast", "aircraft usage and schedule", "preventive maintenance."), "TypeScript", RED),
@@ -49,7 +50,7 @@ def hero():
     if not static_mode():
         stops = "".join(
             f'<stop offset="{offset}" stop-color="{color}"/>'
-            for offset, color in ((0, INK), (.42, INK), (.50, BLUE), (.58, INK), (1, INK))
+            for offset, color in ((0, INK), (.42, INK), (.50, ACCENT), (.58, INK), (1, INK))
         )
         shine = f"""
 <defs>
@@ -64,7 +65,7 @@ def hero():
 {shine}
 {panel(WIDTH, 420)}
 <g class="reveal">
-  <rect class="beacon" x="48" y="49" width="8" height="8" rx="2" fill="{BLUE}"/>
+  <rect class="beacon" x="48" y="49" width="8" height="8" rx="2" fill="{ACCENT}"/>
   {text(66, 57, "FOUNDER & CEO AT SHIPMITRA", MONO, 12, MUTED, 'letter-spacing="1"')}
 </g>
 {text(44, 190, "Het", SERIF, 116, attrs=animated("lift", .15) + ' letter-spacing="-2.5"')}
@@ -74,19 +75,19 @@ def hero():
 </g>
 <g {animated("reveal", .80)}>
   {text(48, 396, "shipmitra.net", MONO, 13)}
-  {text(154, 396, "↗", MONO, 13, BLUE, 'class="arrow-up"')}
+  {text(154, 396, "↗", MONO, 13, ACCENT, 'class="arrow-up"')}
 </g>
 <g id="recognition" {animated("reveal", .35)}>
   <g transform="translate(529 60)">
     <rect width="303" height="300" rx="14" fill="{PAPER_DEEP}" fill-opacity=".35"/>
     <g {animated("lift", .45)}>
       {text(26, 47, "VIBECON", MONO, 12, MUTED, 'letter-spacing="1.2"')}
-      {text(24, 116, "Top 100", SERIF, 72, BLUE, 'letter-spacing="-1.5"')}
+      {text(24, 116, "Top 100", SERIF, 72, ACCENT, 'letter-spacing="-1.5"')}
       {text(26, 157, "Developer", SERIF, 40, INK, 'font-style="italic"')}
     </g>
     <path d="M26 184h251" stroke="{RULE}"/>
     <g {animated("lift", .65)}>
-      {text(24, 258, "9+", SERIF, 58, BLUE)}
+      {text(24, 258, "9+", SERIF, 58, ACCENT)}
       {lines(98, 230, ("Hackathon", "podium finishes"), 22, 17)}
     </g>
   </g>
@@ -166,14 +167,10 @@ def world_tile(index, label, fill, foreground, figure, unit, copy):
     return column_svg(index, height, label, description, body, DISPLAY_FONTS)
 
 
-def contribution_level(count):
-    return sum(count > boundary for boundary in (0, 5, 15, 30, 50))
-
-
 def heatmap(data):
     height = 245
     heading = (f'<text x="42" y="62" font-family="{SERIF}" font-size="34" fill="{INK}" '
-               f'{animated("lift", .8)}>Every day, <tspan font-style="italic" fill="{BLUE}">in blue</tspan></text>')
+               f'{animated("lift", .8)}>Every day, <tspan font-style="italic" fill="{ACCENT}">in blue</tspan></text>')
     body = panel(WIDTH, height) + heading
     if data is None:
         body += text(44, 154, "GitHub contribution data is temporarily unavailable.", size=16, fill=MUTED)
@@ -186,7 +183,8 @@ def heatmap(data):
     origin, step = 44, min(15, (WIDTH - 80) / columns)
     right = origin + columns * step - 3
     legend_x = right - len(HEAT_COLORS) * 14 - 28
-    body += text(right, 60, "REFRESHED DAILY", MONO, 12, MUTED,
+    total = data["total_contributions"]
+    body += text(right, 60, f"{total:,} {'CONTRIBUTION' if total == 1 else 'CONTRIBUTIONS'}", MONO, 12, MUTED,
                  animated("reveal", .8) + ' text-anchor="end" letter-spacing="1"')
     labels = []
     cells = []
@@ -195,61 +193,76 @@ def heatmap(data):
         week, row = divmod(index + sunday_offset, 7)
         x, y = origin + week * step, 96 + row * 15
         count = day["count"]
+        level = day.get("level", min(count, 4))
+        noun = "contribution" if count == 1 else "contributions"
         cells.append(f'<rect x="{x:.2f}" y="{y}" width="12" height="12" rx="3" '
-                     f'fill="{HEAT_COLORS[contribution_level(count)]}" {animated("cell", 1 + week * .03 + row * .02)}>'
-                     f'<title>{stamp.isoformat()} · {count:,} contributions</title></rect>')
-        if row == 0 and stamp.day <= 7 and x < legend_x - 60:
-            labels.append(text(round(x, 2), 217, stamp.strftime("%b"), MONO, 11, MUTED))
+                     f'fill="{HEAT_COLORS[level]}" {animated("cell", 1 + week * .03 + row * .02)}>'
+                     f'<title>{stamp.isoformat()} · {count:,} {noun}</title></rect>')
+        if row == 0 and stamp.day <= 7:
+            labels.append(text(round(x, 2), 86, stamp.strftime("%b"), MONO, 11, MUTED))
     legend = "".join(
         f'<rect x="{legend_x + i * 14:.2f}" y="207" width="11" height="11" rx="2.5" fill="{color}"/>'
         for i, color in enumerate(HEAT_COLORS)
     )
+    scope = data["range"]
+    end = date.fromisoformat(scope["end"])
+    period = f"{first:%b %d, %Y} - {end:%b %d, %Y}".upper()
     body += f"""
 {"".join(cells)}
 <g {animated("reveal", 2.4)}>
   {"".join(labels)}
+  {text(origin, 217, period, MONO, 11, MUTED)}
   {text(round(legend_x - 8, 2), 217, "less", MONO, 11, MUTED, 'text-anchor="end"')}
   {legend}
   {text(round(right - 24, 2), 217, "more", MONO, 11, MUTED)}
 </g>"""
-    scope = data["range"]
-    description = f'{data["total_contributions"]:,} public GitHub contributions, {scope["start"]} to {scope["end"]}.'
+    description = f'{total:,} contributions visible on GitHub, {scope["start"]} to {scope["end"]}.'
     return svg(WIDTH, height + BOTTOM, "Every day, in blue", description, body, DISPLAY_FONTS)
 
 
 def activity(data):
     height = 340
     body = panel(WIDTH, height) + text(
-        40, 58, "THE LAST 12 MONTHS ON GITHUB", MONO, 12, MUTED, animated("reveal", 1.9) + ' letter-spacing="1"'
+        40, 58, "GITHUB PROFILE ACTIVITY · LAST YEAR", MONO, 12, MUTED, animated("reveal", 1.9) + ' letter-spacing="1"'
     )
     if data is None:
         body += text(38, 114, "Activity unavailable", SERIF, 52)
         body += text(40, 154, "GitHub contribution data is temporarily unavailable.", size=16, fill=MUTED)
-        return svg(WIDTH, height + BOTTOM, "The last 12 months on GitHub", "Activity unavailable.", body, DISPLAY_FONTS)
+        return svg(WIDTH, height + BOTTOM, "GitHub profile activity", "Activity unavailable.", body, DISPLAY_FONTS)
 
-    months = data["monthly"][-12:]
-    best_month = max(months[:-1] or months, key=lambda month: month["total"])
+    months = data["monthly"]
+    scope = data["range"]
+    start, end = date.fromisoformat(scope["start"]), date.fromisoformat(scope["end"])
+    partial_months = set()
+    if start.day != 1:
+        partial_months.add(start.strftime("%Y-%m"))
+    if end.day < monthrange(end.year, end.month)[1]:
+        partial_months.add(end.strftime("%Y-%m"))
+    full_months = [month for month in months if month["month"] not in partial_months]
+    best_month = max(full_months, key=lambda month: month["total"], default=None)
     scale = max(1, max(month["total"] for month in months))
     slot = 570 / len(months)
     bar_width = slot - 10
     for i, month in enumerate(months):
         x = 40 + i * slot
-        partial = i == len(months) - 1
-        highlight = month == best_month and month["total"] > 0 and not partial
-        color = "#c9c9c4" if partial else BLUE if highlight else INK
-        bar_height = max(4, round(140 * month["total"] / scale))
-        label = date.fromisoformat(month["month"] + "-01").strftime("%b")
+        partial = month["month"] in partial_months
+        highlight = month == best_month and month["total"] > 0
+        color = PARTIAL if partial else ACCENT if highlight else INK
+        bar_height = max(2, round(140 * month["total"] / scale)) if month["total"] else 0
+        month_date = date.fromisoformat(month["month"] + "-01")
+        label = month_date.strftime("%b '%y" if i in (0, len(months) - 1) else "%b")
         delay = 2.20 + i * .07
         body += (
             f'<rect x="{x:.2f}" y="{292 - bar_height}" width="{bar_width:.2f}" height="{bar_height}" '
             f'rx="4" fill="{color}" {animated("bar", delay)}>'
-            f'<title>{month["month"]} · {month["total"]:,} contributions{" (month in progress)" if partial else ""}</title></rect>'
+            f'<title>{month["month"]} · {month["total"]:,} contributions{" (partial month)" if partial else ""}</title></rect>'
         )
         attrs = ' text-anchor="middle"'
         midpoint = round(x + bar_width / 2, 2)
         body += text(midpoint, 314, label, MONO, 11, MUTED, animated("reveal", delay) + attrs)
-        if highlight:
-            body += text(midpoint, 282 - bar_height, f'{month["total"]:,}', MONO, 11, BLUE, animated("cell", 3.2) + attrs)
+        if month["total"]:
+            body += text(midpoint, 282 - bar_height, f'{month["total"]:,}', MONO, 11,
+                         ACCENT if highlight else MUTED, animated("reveal", delay + .6) + attrs)
 
     current = data["current_streak"]["length"]
     longest = data["longest_streak"]["length"]
@@ -273,13 +286,12 @@ def activity(data):
         if i < 2:
             body += f'<path d="M650 {y + 44}h190" stroke="{RULE}" {animated("reveal", 2.6)}/>'
     monthly_summary = ", ".join(f'{month["month"]}: {month["total"]:,}' for month in months)
-    scope = data["range"]
-    desc = (f'{total:,} public contributions across {active} days from {scope["start"]} to {scope["end"]}. '
+    desc = (f'{total:,} contributions visible on GitHub across {active} days from {scope["start"]} to {scope["end"]}. '
             f"Current streak {current} days. "
             f"Longest streak {longest} days. Busiest day: {busiest['count']:,} contributions"
             f"{' on ' + busiest['date'] if busiest['date'] else ''}. "
-            f"Chart totals for the 12 latest calendar months: {monthly_summary}.")
-    return svg(WIDTH, height + BOTTOM, "The last 12 months on GitHub", desc, body, DISPLAY_FONTS)
+            f"Monthly totals for the same dates: {monthly_summary}.")
+    return svg(WIDTH, height + BOTTOM, "GitHub profile activity", desc, body, DISPLAY_FONTS)
 
 
 def project_card(index, name, description, language, color):
@@ -295,9 +307,8 @@ def project_card(index, name, description, language, color):
     return column_svg(index, height, name, " ".join(description) + " " + language + ".", body, ("sans", "semibold", "mono"))
 
 
-def section_title(dark):
-    fg = "#e6edf3" if dark else INK
-    body = (f'<text x="2" y="46" font-family="{SERIF}" font-size="34" fill="{fg}" {animated("lift", 4.4)}>'
+def section_title():
+    body = (f'<text x="2" y="46" font-family="{SERIF}" font-size="34" fill="{INK}" {animated("lift", 4.4)}>'
             'What I’m <tspan font-style="italic">coding</tspan></text>')
     return svg(WIDTH, 64, "What I’m coding", f"Featured public repositories from {PROFILE}.",
                body, ("serif", "italic"))
@@ -317,10 +328,9 @@ def render(output):
             "through technology.",
         )),
         "brand": world_tile(1, "BRAND", RED, WHITE, brand, unit, copy),
-        "valuation": world_tile(2, "VALUATION", YELLOW, INK, value, "",
+        "valuation": world_tile(2, "VALUATION", YELLOW, "#111111", value, "",
                                (f"{company} valued at {value}", offer)),
-        "title-coding-light": section_title(False),
-        "title-coding-dark": section_title(True),
+        "title-coding": section_title(),
     }
     for index, project in enumerate(PROJECTS):
         cards[f"repo-{project[0].lower()}"] = project_card(index, *project)

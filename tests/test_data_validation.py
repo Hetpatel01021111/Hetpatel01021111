@@ -36,12 +36,19 @@ class DataTests(unittest.TestCase):
 
     def test_parser_handles_real_calendar_order_without_guessing_counts(self):
         days = example_days()
-        markup = []
+        markup = ['<h2 id="js-contribution-activity-description">\n1,234\n contributions\n in the last year</h2>']
         for i, day in reversed(list(enumerate(days))):
             count = "1,234" if i == 20 else "No"
-            markup.append(f'<td class="ContributionCalendar-day" data-date="{day["date"]}" id="d{i}"></td>')
+            level = 4 if i == 20 else 0
+            markup.append(
+                f'<td class="ContributionCalendar-day" data-date="{day["date"]}" data-level="{level}" id="d{i}"></td>'
+            )
             markup.append(f'<tool-tip for="d{i}">{count} contributions on April 21st.</tool-tip>')
-        self.assertEqual(parse_calendar("".join(markup), PROFILE)["total_contributions"], 1234)
+        data = parse_calendar("".join(markup), PROFILE)
+        self.assertEqual(data["total_contributions"], 1234)
+        self.assertEqual(data["days"][20]["level"], 4)
+        with self.assertRaisesRegex(ValueError, "do not add up"):
+            parse_calendar("".join(markup).replace("1,234", "1,235", 1), PROFILE)
         with self.assertRaises(ValueError):
             parse_calendar("".join(markup[:-1]), PROFILE)
         with self.assertRaises(ValueError):
