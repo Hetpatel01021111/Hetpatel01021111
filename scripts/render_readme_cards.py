@@ -76,30 +76,23 @@ def hero():
   {text(48, 396, "shipmitra.net", MONO, 13)}
   {text(154, 396, "↗", MONO, 13, BLUE, 'class="arrow-up"')}
 </g>
-<defs>
-  <pattern id="route-grid" width="18" height="18" patternUnits="userSpaceOnUse">
-    <circle cx="5" cy="5" r="1" fill="{MUTED}" opacity=".27"/>
-  </pattern>
-</defs>
-<g id="shipping-route" aria-hidden="true" {animated("reveal", .35)}>
+<g id="recognition" {animated("reveal", .35)}>
   <g transform="translate(529 60)">
     <rect width="303" height="300" rx="14" fill="{PAPER_DEEP}" fill-opacity=".35"/>
-    <rect x="14" y="14" width="275" height="272" rx="8" fill="url(#route-grid)"/>
-    <path d="M51 243h55q45 0 45-45v-33q0-51 51-51h10q39 0 39-39V56"
-      fill="none" stroke="{BLUE}" stroke-opacity=".65" stroke-width="2.5"
-      stroke-linecap="round" stroke-dasharray="1 7"/>
-    <circle cx="51" cy="243" r="8" fill="{PAPER}" stroke="{BLUE}" stroke-width="2"/>
-    <circle cx="51" cy="243" r="2.5" fill="{BLUE}"/>
-    <circle cx="251" cy="56" r="12" fill="{BLUE}" fill-opacity=".12"/>
-    <circle cx="251" cy="56" r="5" fill="{BLUE}"/>
-    <g stroke="{BLUE}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
-      <path d="m151 94 47 25v51l-47 25-47-25v-51z" fill="{PAPER}"/>
-      <path d="m104 119 47 25 47-25m-47 25v51m-23-88 47 25v15" fill="none"/>
+    <g {animated("lift", .45)}>
+      {text(26, 47, "VIBECON", MONO, 12, MUTED, 'letter-spacing="1.2"')}
+      {text(24, 116, "Top 100", SERIF, 72, BLUE, 'letter-spacing="-1.5"')}
+      {text(26, 157, "Developer", SERIF, 40, INK, 'font-style="italic"')}
+    </g>
+    <path d="M26 184h251" stroke="{RULE}"/>
+    <g {animated("lift", .65)}>
+      {text(24, 258, "9+", SERIF, 58, BLUE)}
+      {lines(98, 230, ("Hackathon", "podium finishes"), 22, 17)}
     </g>
   </g>
 </g>"""
     description = ("Founder & CEO at ShipMitra. Founder, engineer, and builder working on logistics, AI, "
-                   "and real-world products.")
+                   "and real-world products. Top 100 Developer at VibeCon and 9+ hackathon podium finishes.")
     return svg(WIDTH, 420 + BOTTOM, "Het Patel", description, body, DISPLAY_FONTS)
 
 
@@ -133,7 +126,7 @@ def count_up(value, label, size, fill, begin):
     )
 
 
-def world_tile(index, label, fill, foreground, figure, unit, copy, support=""):
+def world_tile(index, label, fill, foreground, figure, unit, copy):
     height, delay = 210, 3.1 + index * .25
     size = 44 if len(figure + unit) <= 13 else min(40, 465 // len(figure + unit) + 10)
     effects = ""
@@ -166,11 +159,10 @@ def world_tile(index, label, fill, foreground, figure, unit, copy, support=""):
       {count_up(figure, unit, size, foreground, delay + .45)}
     </g>
   </g>
-{text(24, 134, support, SERIF, 19, foreground, animated("lift", delay + .65) + ' font-style="italic"') if support else ""}
-  {"".join(text(24, (159 if support else 150) + i * 20, line, SANS, 14, foreground,
+  {"".join(text(24, 150 + i * 20, line, SANS, 14, foreground,
                 animated("lift", delay + .75 + i * .1)) for i, line in enumerate(copy))}
 </g>"""
-    description = " ".join(part for part in (figure, unit, support, *copy) if part)
+    description = " ".join(part for part in (figure, unit, *copy) if part)
     return column_svg(index, height, label, description, body, DISPLAY_FONTS)
 
 
@@ -325,7 +317,8 @@ def render(output):
             "through technology.",
         )),
         "brand": world_tile(1, "BRAND", RED, WHITE, brand, unit, copy),
-        "valuation": world_tile(2, "VALUATION", YELLOW, INK, value, "", (offer,), company),
+        "valuation": world_tile(2, "VALUATION", YELLOW, INK, value, "",
+                               (f"{company} valued at {value}", offer)),
         "title-coding-light": section_title(False),
         "title-coding-dark": section_title(True),
     }

@@ -94,7 +94,6 @@
       <text x="22" y="112" font-family="'Instrument Serif', Georgia, serif" font-size="44" fill="#ffffff">- <tspan font-style="italic">users</tspan></text>
     </g>
   </g>
-
   <text x="24" y="150" font-family="Geist, system-ui, sans-serif" font-size="14" fill="#ffffff" class="lift" style="--delay: 4.100s">ShipMitra user growth.</text>
 <text x="24" y="170" font-family="Geist, system-ui, sans-serif" font-size="14" fill="#ffffff" class="lift" style="--delay: 4.200s">Verified analytics coming soon.</text>
 

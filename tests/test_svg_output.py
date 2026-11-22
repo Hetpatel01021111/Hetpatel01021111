@@ -32,11 +32,12 @@ class SvgTests(unittest.TestCase):
                 self.assertNotIn("script", [node.tag.removeprefix(NAMESPACE) for node in image.iter()])
                 self.assertNotRegex("".join(image.itertext()), r"[–—]")
 
-    def test_hero_uses_a_vector_shipping_route(self):
+    def test_hero_shows_developer_recognition(self):
         hero = ET.parse(ROOT / "cards/hero.svg").getroot()
-        route = hero.find(f".//{NAMESPACE}g[@id='shipping-route']")
-        self.assertIsNotNone(route)
-        self.assertTrue(list(route.iter(f"{NAMESPACE}path")))
+        recognition = hero.find(f".//{NAMESPACE}g[@id='recognition']")
+        self.assertIsNotNone(recognition)
+        labels = [node.text for node in recognition.iter(f"{NAMESPACE}text")]
+        self.assertEqual(labels, ["VIBECON", "Top 100", "Developer", "9+", "Hackathon", "podium finishes"])
         self.assertFalse(list(hero.iter(f"{NAMESPACE}image")))
 
     def test_valuation_animates_dollars_and_renders_a_static_final_frame(self):
@@ -60,8 +61,9 @@ class SvgTests(unittest.TestCase):
             display = ET.parse(output / "valuation.svg").getroot()
             labels = {node.text: float(node.get("y")) for node in display.iter(f"{NAMESPACE}text")}
             self.assertIn("VALUATION", labels)
-            self.assertLess(labels["$909K"], labels["ShipMitra"])
-            self.assertIn("From a $200K offer for 22% equity.", labels)
+            self.assertLess(labels["$909K"], labels["ShipMitra valued at $909K"])
+            self.assertLess(labels["ShipMitra valued at $909K"], labels["From a $200K offer for 22% equity."])
+            self.assertNotIn("ShipMitra", labels)
 
     def test_missing_data_renders_as_unavailable(self):
         for card in [heatmap(None), activity(None)]:
