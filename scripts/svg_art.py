@@ -8,8 +8,9 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PAPER, PAPER_DEEP = "#f3f3f1", "#e2e2de"
-INK, INK_SOFT, MUTED, RULE = "#111111", "#3a3a3c", "#6e6e73", "#dcdcd7"
+PAPER, PAPER_DEEP = "var(--paper)", "var(--paper-deep)"
+INK, INK_SOFT, MUTED, RULE = "var(--ink)", "var(--soft)", "var(--muted)", "var(--rule)"
+ACCENT, PARTIAL = "var(--accent)", "var(--partial)"
 BLUE, RED, YELLOW = "#2f55ff", "#ef3b2d", "#ffc81a"
 SERIF = "'Instrument Serif', Georgia, serif"
 SANS = "Geist, system-ui, sans-serif"
@@ -22,6 +23,39 @@ FONT_FILES = {
     "semibold": ("Geist", "normal", 600, "geist-semibold.woff"),
     "mono": ("Geist Mono", "normal", 400, "geist-mono.woff"),
 }
+
+PALETTE = """
+:root {
+  --paper: #f3f3f1;
+  --paper-deep: #e2e2de;
+  --ink: #111111;
+  --soft: #3a3a3c;
+  --muted: #6e6e73;
+  --rule: #dcdcd7;
+  --accent: #2f55ff;
+  --partial: #c9c9c4;
+  --heat-1: #c8d3ff;
+  --heat-2: #94a8ff;
+  --heat-3: #5476ff;
+  --heat-4: #2344eb;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #12161d;
+    --paper-deep: #232b36;
+    --ink: #f0f3f6;
+    --soft: #c7d1de;
+    --muted: #a6b2c3;
+    --rule: #343e4c;
+    --accent: #8da6ff;
+    --partial: #626f82;
+    --heat-1: #263f77;
+    --heat-2: #365ac1;
+    --heat-3: #5e81ef;
+    --heat-4: #a1bbff;
+  }
+}
+"""
 
 ANIMATIONS = """
 @keyframes lift {
@@ -93,7 +127,9 @@ def font_face(key):
 
 
 def svg(width, height, title, description, body, fonts):
-    css = "".join(font_face(font) for font in fonts)
+    # Embedded SVGs inherit the image's color scheme, including GitHub's
+    # explicit appearance setting when it differs from the system setting.
+    css = "".join(font_face(font) for font in fonts) + PALETTE
     if not static_mode():
         css += ".motion { display: none }\n@media (prefers-reduced-motion: no-preference) {"
         css += ANIMATIONS + "}"

@@ -6,6 +6,7 @@ from tempfile import TemporaryDirectory
 from unittest.mock import patch
 from xml.etree import ElementTree as ET
 
+from scripts.fetch_contributions import load_snapshot
 from scripts.render_readme_cards import activity, heatmap, render
 from scripts.svg_art import ROOT
 
@@ -14,11 +15,11 @@ NAMESPACE = "{http://www.w3.org/2000/svg}"
 
 
 class SvgTests(unittest.TestCase):
-    def test_readme_embeds_all_eleven_valid_cards(self):
+    def test_readme_embeds_all_ten_theme_adaptive_cards(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         expected = re.findall(r'(?:src|srcset)="\./(cards/[^"]+\.svg)"', readme)
         still_sources = re.findall(r'<source media="[^"]*prefers-reduced-motion[^"]*" srcset="\./(cards/[^"]+\.svg)#still"', readme)
-        self.assertEqual(len(expected), 11)
+        self.assertEqual(len(expected), 10)
         self.assertCountEqual(still_sources, expected)
         self.assertEqual(set(expected), {f"cards/{file.name}" for file in (ROOT / "cards").glob("*.svg")})
         for filename in expected:
@@ -28,7 +29,9 @@ class SvgTests(unittest.TestCase):
                 self.assertEqual(image.get("id"), "still")
                 self.assertTrue(image.findtext(f"{NAMESPACE}title"))
                 self.assertTrue(image.findtext(f"{NAMESPACE}desc"))
-                self.assertIn("data:font/woff;base64,", image.findtext(f"{NAMESPACE}style"))
+                style = image.findtext(f"{NAMESPACE}style")
+                self.assertIn("data:font/woff;base64,", style)
+                self.assertIn("@media (prefers-color-scheme: dark)", style)
                 self.assertNotIn("script", [node.tag.removeprefix(NAMESPACE) for node in image.iter()])
                 self.assertNotRegex("".join(image.itertext()), r"[–—]")
 
@@ -70,3 +73,17 @@ class SvgTests(unittest.TestCase):
             root = ET.fromstring(card)
             self.assertIn("temporarily unavailable", "".join(root.itertext()))
             self.assertFalse(any(node.get("class") in ("bar", "cell") for node in root.iter()))
+
+    def test_charts_cover_the_same_verified_dates_and_total(self):
+        data = load_snapshot()
+        if data is None:
+            self.skipTest("Contribution snapshot unavailable")
+
+        def counts(svg, css_class):
+            root = ET.fromstring(svg)
+            elements = root.findall(f".//{NAMESPACE}rect[@class='{css_class}']")
+            return [int(node.findtext(f"{NAMESPACE}title").split(" · ")[1].split()[0].replace(",", ""))
+                    for node in elements]
+
+        self.assertEqual(counts(heatmap(data), "cell"), [day["count"] for day in data["days"]])
+        self.assertEqual(counts(activity(data), "bar"), [month["total"] for month in data["monthly"]])

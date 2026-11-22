@@ -16,6 +16,7 @@ PROFILE = "Hetpatel01021111"
 SNAPSHOT = ROOT / "data/contributions.json"
 DAY = timedelta(days=1)
 COUNT = re.compile(r"(No|[1-9]\d{0,2}(?:,\d{3})+|\d+) contributions? on .+", re.I)
+TOTAL = re.compile(r"([\d,]+)\s+contributions?\s+in the last year", re.I)
 
 
 def snapshot(username, days):
@@ -27,6 +28,11 @@ def snapshot(username, days):
         raise ValueError("Expected a continuous year of contribution days")
     if any(type(day["count"]) is not int or day["count"] < 0 for day in days):
         raise ValueError("Contribution counts must be non-negative integers")
+    for day in days:
+        if "level" in day:
+            level = day["level"]
+            if type(level) is not int or level not in range(5) or (level == 0) != (day["count"] == 0):
+                raise ValueError(f'Invalid contribution level for {day["date"]}')
 
     monthly = Counter()
     streaks = []
@@ -53,7 +59,7 @@ def snapshot(username, days):
         "active_days": sum(day["count"] > 0 for day in days),
         "current_streak": current,
         "longest_streak": max(streaks, key=lambda streak: streak["length"], default=empty),
-        "best_day": best if best["count"] else {"date": None, "count": 0},
+        "best_day": {"date": best["date"] if best["count"] else None, "count": best["count"]},
         "monthly": [{"month": month, "total": total} for month, total in monthly.items()],
         "days": days,
     }
@@ -61,6 +67,10 @@ def snapshot(username, days):
 
 def parse_calendar(markup, username):
     page = BeautifulSoup(markup, "html.parser")
+    heading = page.select_one("#js-contribution-activity-description")
+    total_match = TOTAL.fullmatch(heading.get_text(" ", strip=True)) if heading else None
+    if total_match is None:
+        raise ValueError("GitHub did not return a yearly contribution total")
     tooltips = {tip["for"]: tip.get_text(" ", strip=True) for tip in page.select("tool-tip[for]")}
     days = []
     for cell in page.select("td.ContributionCalendar-day[data-date]"):
@@ -69,8 +79,18 @@ def parse_calendar(markup, username):
         if match is None:
             raise ValueError(f"Missing or unreadable contribution count for {stamp}")
         number = match[1]
-        days.append({"date": stamp, "count": 0 if number.lower() == "no" else int(number.replace(",", ""))})
-    return snapshot(username, sorted(days, key=lambda day: day["date"]))
+        level = cell.get("data-level", "")
+        if level not in ("0", "1", "2", "3", "4"):
+            raise ValueError(f"Missing or unreadable contribution level for {stamp}")
+        days.append({
+            "date": stamp,
+            "count": 0 if number.lower() == "no" else int(number.replace(",", "")),
+            "level": int(level),
+        })
+    data = snapshot(username, sorted(days, key=lambda day: day["date"]))
+    if data["total_contributions"] != int(total_match[1].replace(",", "")):
+        raise ValueError("Daily counts do not add up to GitHub's yearly total")
+    return data
 
 
 def load_snapshot(path=SNAPSHOT, username=PROFILE):
@@ -87,7 +107,11 @@ def refresh(username, path=SNAPSHOT):
         raise ValueError("Invalid GitHub username")
     request = Request(
         f"https://github.com/users/{username}/contributions",
-        headers={"User-Agent": "Public profile calendar refresh", "Cache-Control": "no-cache"},
+        headers={
+            "User-Agent": "Public profile calendar refresh",
+            "Accept-Language": "en-US",
+            "Cache-Control": "no-cache",
+        },
     )
     try:
         try:
