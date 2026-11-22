@@ -33,10 +33,9 @@ jobs:
       - name: Validate committed artwork and reproduce it from source
         run: |
           python -m unittest discover -s tests -v
-          python -m scripts.prep_photo
           python -m scripts.make_ascii_svg
           python -m scripts.render_readme_cards
-          git diff --exit-code -- assets/het-portrait-prepped.png het-ascii.svg cards/
+          git diff --exit-code -- het-ascii.svg cards/
 
   refresh:
     if: github.event_name != 'pull_request' && github.ref_type == 'branch'

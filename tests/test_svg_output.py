@@ -6,6 +6,8 @@ from tempfile import TemporaryDirectory
 from unittest.mock import patch
 from xml.etree import ElementTree as ET
 
+from PIL import Image, ImageChops, ImageStat
+
 from scripts.make_ascii_svg import NAMESPACE, PORTRAIT, read_rows, sample_rows
 from scripts.prep_photo import PREPPED, SOURCE, prepare
 from scripts.render_readme_cards import activity, heatmap, render
@@ -31,7 +33,12 @@ class SvgTests(unittest.TestCase):
         with TemporaryDirectory() as directory:
             regenerated = Path(directory) / PREPPED.name
             prepare(SOURCE, regenerated)
-            rows = sample_rows(regenerated)
+            with Image.open(regenerated) as fresh, Image.open(PREPPED) as committed:
+                self.assertEqual(fresh.size, committed.size)
+                # libjpeg can round decoded pixels differently across architectures.
+                delta = ImageStat.Stat(ImageChops.difference(fresh, committed)).mean[0]
+                self.assertLess(delta, .35)
+        rows = sample_rows(PREPPED)
         self.assertEqual(rows, read_rows(PORTRAIT))
         portrait = ET.parse(ROOT / "cards/hero.svg").getroot()
         hero_rows = [node.text for node in portrait.iter(f"{NAMESPACE}text") if node.get("class") == "portrait-row"]
