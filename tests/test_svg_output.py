@@ -18,12 +18,15 @@ class SvgTests(unittest.TestCase):
     def test_readme_embeds_all_eleven_valid_cards(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         expected = re.findall(r'(?:src|srcset)="\./(cards/[^"]+\.svg)"', readme)
+        still_sources = re.findall(r'<source media="[^"]*prefers-reduced-motion[^"]*" srcset="\./(cards/[^"]+\.svg)#still"', readme)
         self.assertEqual(len(expected), 11)
+        self.assertCountEqual(still_sources, expected)
         self.assertEqual(set(expected), {f"cards/{file.name}" for file in (ROOT / "cards").glob("*.svg")})
         for filename in expected:
             with self.subTest(filename=filename):
                 image = ET.parse(ROOT / filename).getroot()
                 self.assertEqual(image.tag, f"{NAMESPACE}svg")
+                self.assertEqual(image.get("id"), "still")
                 self.assertTrue(image.findtext(f"{NAMESPACE}title"))
                 self.assertTrue(image.findtext(f"{NAMESPACE}desc"))
                 self.assertIn("data:font/woff;base64,", image.findtext(f"{NAMESPACE}style"))
@@ -49,6 +52,7 @@ class SvgTests(unittest.TestCase):
     def test_valuation_animates_dollars_and_renders_a_static_final_frame(self):
         animated = (ROOT / "cards/valuation.svg").read_text(encoding="utf-8")
         self.assertIn("prefers-reduced-motion: no-preference", animated)
+        self.assertIn(":root:target .motion { display: none }", animated)
         root = ET.fromstring(animated)
         amounts = [node.text for node in root.iter(f"{NAMESPACE}text") if node.text.startswith("$") and node.text.endswith("K")]
         self.assertEqual(amounts[0], "$909K")

@@ -98,8 +98,16 @@ def svg(width, height, title, description, body, fonts):
     if not static_mode():
         css += ".motion { display: none }\n@media (prefers-reduced-motion: no-preference) {"
         css += ANIMATIONS + "}"
+        # README picture sources pass #still when the parent page requests
+        # reduced motion, even if the SVG image has a separate media context.
+        css += (
+            ":root:target * { animation: none !important }\n"
+            ":root:target .motion { display: none }\n"
+            ":root:target .still { display: inline }\n"
+            f":root:target .name-shine {{ fill: {INK} }}\n"
+        )
     return (
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width:.3f}" height="{height}" '
+        f'<svg xmlns="http://www.w3.org/2000/svg" id="still" width="{width:.3f}" height="{height}" '
         f'viewBox="0 0 {width:.3f} {height}" role="img" aria-labelledby="title description">\n'
         f'<title id="title">{escape(title)}</title>\n<desc id="description">{escape(description)}</desc>\n'
         f'<style>{css}</style>\n{body}\n</svg>\n'
