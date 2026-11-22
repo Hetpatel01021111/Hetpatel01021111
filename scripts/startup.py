@@ -36,7 +36,8 @@ def read_valuation():
     display = compact_dollars(post)
     if offer["display_value"] != display:
         raise ValueError(f"Valuation display should be {display} for the current offer")
-    return display, f'{compact_dollars(Decimal(str(offer["investment_amount"])))} offered for {offer["equity_percent"]}% equity.'
+    amount = compact_dollars(Decimal(str(offer["investment_amount"])))
+    return display, offer["company"], f'From a {amount} offer for {offer["equity_percent"]}% equity.'
 
 
 def brand_metrics(metrics):
@@ -49,7 +50,7 @@ def brand_metrics(metrics):
         return f"{registered:,}", "registered users", ("ShipMitra product registrations.",)
     if website is not None:
         return f"{website:,}", "website users", ("ShipMitra website analytics.",)
-    return "—", "users", ("ShipMitra user growth.", "Verified analytics coming soon.")
+    return "-", "users", ("ShipMitra user growth.", "Verified analytics coming soon.")
 
 
 def read_metrics():

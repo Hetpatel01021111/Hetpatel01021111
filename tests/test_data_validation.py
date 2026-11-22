@@ -61,7 +61,7 @@ class DataTests(unittest.TestCase):
     def test_product_and_website_users_remain_distinct(self):
         metrics = json.loads((DATA / "startup_metrics.json").read_text(encoding="utf-8"))
         blank = {"website_users": None, "registered_product_users": None}
-        self.assertEqual(brand_metrics(blank)[:2], ("—", "users"))
+        self.assertEqual(brand_metrics(blank)[:2], ("-", "users"))
         self.assertEqual(brand_metrics(blank | {"website_users": 1350})[:2], ("1,350", "website users"))
         self.assertEqual(brand_metrics(blank | {"registered_product_users": 0})[:2], ("0", "registered users"))
         self.assertEqual(metrics["company"], "ShipMitra")

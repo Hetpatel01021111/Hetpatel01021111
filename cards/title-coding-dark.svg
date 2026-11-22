@@ -37,14 +37,13 @@
   from { transform: translateX(-260px) skewX(-20deg) }
   22%, 100% { transform: translateX(420px) skewX(-20deg) }
 }
-.lift, .reveal, .portrait-row, .bar, .cell, .swing, .label-in, .arrow-in, .roll-in, .ring {
+.lift, .reveal, .bar, .cell, .swing, .label-in, .arrow-in, .roll-in, .ring {
   animation-delay: var(--delay, 0s);
   animation-fill-mode: both;
   transform-box: fill-box;
 }
 .lift { animation-name: lift; animation-duration: .8s; animation-timing-function: cubic-bezier(.2,.7,.2,1) }
-.reveal, .portrait-row { animation-name: reveal; animation-duration: .9s; animation-timing-function: ease-out }
-.portrait-row { animation-duration: .35s }
+.reveal { animation-name: reveal; animation-duration: .9s; animation-timing-function: ease-out }
 .bar { animation-name: grow; animation-duration: .8s; animation-timing-function: cubic-bezier(.2,.7,.2,1); transform-origin: bottom }
 .cell { animation-name: cell; animation-duration: .4s; animation-timing-function: ease-out; transform-origin: center }
 .beacon { animation: beacon 1.6s ease-in-out infinite }

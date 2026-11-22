@@ -6,12 +6,11 @@ from tempfile import TemporaryDirectory
 from unittest.mock import patch
 from xml.etree import ElementTree as ET
 
-from PIL import Image, ImageChops, ImageStat
-
-from scripts.make_ascii_svg import NAMESPACE, PORTRAIT, read_rows, sample_rows
-from scripts.prep_photo import PREPPED, SOURCE, prepare
 from scripts.render_readme_cards import activity, heatmap, render
 from scripts.svg_art import ROOT
+
+
+NAMESPACE = "{http://www.w3.org/2000/svg}"
 
 
 class SvgTests(unittest.TestCase):
@@ -31,23 +30,14 @@ class SvgTests(unittest.TestCase):
                 self.assertTrue(image.findtext(f"{NAMESPACE}desc"))
                 self.assertIn("data:font/woff;base64,", image.findtext(f"{NAMESPACE}style"))
                 self.assertNotIn("script", [node.tag.removeprefix(NAMESPACE) for node in image.iter()])
+                self.assertNotRegex("".join(image.itertext()), r"[–—]")
 
-    def test_hero_rows_match_the_reproducible_jpeg_transformation(self):
-        with TemporaryDirectory() as directory:
-            regenerated = Path(directory) / PREPPED.name
-            prepare(SOURCE, regenerated)
-            with Image.open(regenerated) as fresh, Image.open(PREPPED) as committed:
-                self.assertEqual(fresh.size, committed.size)
-                # libjpeg can round decoded pixels differently across architectures.
-                delta = ImageStat.Stat(ImageChops.difference(fresh, committed)).mean[0]
-                self.assertLess(delta, .35)
-        rows = sample_rows(PREPPED)
-        self.assertEqual(rows, read_rows(PORTRAIT))
-        portrait = ET.parse(ROOT / "cards/hero.svg").getroot()
-        hero_rows = [node.text for node in portrait.iter(f"{NAMESPACE}text") if node.get("class") == "portrait-row"]
-        self.assertEqual(len(hero_rows), 96)
-        self.assertTrue(all(len(row) == 180 for row in hero_rows))
-        self.assertEqual(rows, hero_rows)
+    def test_hero_uses_a_vector_shipping_route(self):
+        hero = ET.parse(ROOT / "cards/hero.svg").getroot()
+        route = hero.find(f".//{NAMESPACE}g[@id='shipping-route']")
+        self.assertIsNotNone(route)
+        self.assertTrue(list(route.iter(f"{NAMESPACE}path")))
+        self.assertFalse(list(hero.iter(f"{NAMESPACE}image")))
 
     def test_valuation_animates_dollars_and_renders_a_static_final_frame(self):
         animated = (ROOT / "cards/valuation.svg").read_text(encoding="utf-8")
@@ -67,11 +57,11 @@ class SvgTests(unittest.TestCase):
                 root = ET.parse(file).getroot()
                 self.assertFalse(any(node.tag in [f"{NAMESPACE}set", f"{NAMESPACE}animateTransform"] for node in root.iter()))
                 self.assertNotIn("@keyframes", root.findtext(f"{NAMESPACE}style"))
-            display = (output / "valuation.svg").read_text(encoding="utf-8")
-            self.assertIn("$909K", display)
-            self.assertIn("post-money", display)
-            self.assertIn("$200K offered for 22% equity.", display)
-            self.assertIn("Offer-implied valuation.", display)
+            display = ET.parse(output / "valuation.svg").getroot()
+            labels = {node.text: float(node.get("y")) for node in display.iter(f"{NAMESPACE}text")}
+            self.assertIn("VALUATION", labels)
+            self.assertLess(labels["$909K"], labels["ShipMitra"])
+            self.assertIn("From a $200K offer for 22% equity.", labels)
 
     def test_missing_data_renders_as_unavailable(self):
         for card in [heatmap(None), activity(None)]:

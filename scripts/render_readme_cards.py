@@ -6,7 +6,6 @@ from datetime import date
 from pathlib import Path
 
 from .fetch_contributions import PROFILE, load_snapshot
-from .make_ascii_svg import SIDE, portrait_rows, read_rows
 from .startup import read_metrics, read_valuation
 from .svg_art import (
     BLUE, INK, INK_SOFT, MONO, MUTED, PAPER, PAPER_DEEP, RED, ROOT, RULE, SANS,
@@ -46,9 +45,6 @@ def column_svg(index, height, title, description, body, fonts):
 
 
 def hero():
-    rows = read_rows()
-    if len(rows) != 96 or any(len(row) != 180 for row in rows):
-        raise ValueError("Run scripts.make_ascii_svg to generate the 180 × 96 portrait")
     shine = ""
     if not static_mode():
         stops = "".join(
@@ -80,11 +76,30 @@ def hero():
   {text(48, 396, "shipmitra.net", MONO, 13)}
   {text(154, 396, "↗", MONO, 13, BLUE, 'class="arrow-up"')}
 </g>
-<g aria-hidden="true" transform="translate(520 46) scale({328 / SIDE})">
-  {portrait_rows(rows)}
+<defs>
+  <pattern id="route-grid" width="18" height="18" patternUnits="userSpaceOnUse">
+    <circle cx="5" cy="5" r="1" fill="{MUTED}" opacity=".27"/>
+  </pattern>
+</defs>
+<g id="shipping-route" aria-hidden="true" {animated("reveal", .35)}>
+  <g transform="translate(529 60)">
+    <rect width="303" height="300" rx="14" fill="{PAPER_DEEP}" fill-opacity=".35"/>
+    <rect x="14" y="14" width="275" height="272" rx="8" fill="url(#route-grid)"/>
+    <path d="M51 243h55q45 0 45-45v-33q0-51 51-51h10q39 0 39-39V56"
+      fill="none" stroke="{BLUE}" stroke-opacity=".65" stroke-width="2.5"
+      stroke-linecap="round" stroke-dasharray="1 7"/>
+    <circle cx="51" cy="243" r="8" fill="{PAPER}" stroke="{BLUE}" stroke-width="2"/>
+    <circle cx="51" cy="243" r="2.5" fill="{BLUE}"/>
+    <circle cx="251" cy="56" r="12" fill="{BLUE}" fill-opacity=".12"/>
+    <circle cx="251" cy="56" r="5" fill="{BLUE}"/>
+    <g stroke="{BLUE}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <path d="m151 94 47 25v51l-47 25-47-25v-51z" fill="{PAPER}"/>
+      <path d="m104 119 47 25 47-25m-47 25v51m-23-88 47 25v15" fill="none"/>
+    </g>
+  </g>
 </g>"""
     description = ("Founder & CEO at ShipMitra. Founder, engineer, and builder working on logistics, AI, "
-                   "and real-world products. The ASCII art shows Het Patel’s original profile photo.")
+                   "and real-world products.")
     return svg(WIDTH, 420 + BOTTOM, "Het Patel", description, body, DISPLAY_FONTS)
 
 
@@ -299,19 +314,18 @@ def section_title(dark):
 def render(output):
     contributions = load_snapshot()
     brand, unit, copy = read_metrics()
-    value, offer = read_valuation()
+    value, company, offer = read_valuation()
     cards = {
         "hero": hero(),
         "heatmap": heatmap(contributions),
         "activity": activity(contributions),
         "build": world_tile(0, "BUILD", BLUE, WHITE, "1", "startup", (
-            "ShipMitra — simplifying domestic",
+            "ShipMitra - simplifying domestic",
             "and international shipping",
             "through technology.",
         )),
         "brand": world_tile(1, "BRAND", RED, WHITE, brand, unit, copy),
-        "valuation": world_tile(2, "VALUATION", YELLOW, INK, value, "",
-                               (offer, "Offer-implied valuation."), "post-money"),
+        "valuation": world_tile(2, "VALUATION", YELLOW, INK, value, "", (offer,), company),
         "title-coding-light": section_title(False),
         "title-coding-dark": section_title(True),
     }

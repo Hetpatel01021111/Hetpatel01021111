@@ -14,7 +14,7 @@ class ValuationTests(unittest.TestCase):
         self.assertEqual(post.quantize(Decimal(".01")), Decimal("909090.91"))
         self.assertEqual(pre.quantize(Decimal(".01")), Decimal("709090.91"))
         self.assertEqual(compact_dollars(post), "$909K")
-        self.assertEqual(read_valuation(), ("$909K", "$200K offered for 22% equity."))
+        self.assertEqual(read_valuation(), ("$909K", "ShipMitra", "From a $200K offer for 22% equity."))
         self.assertIs(self.offer["is_funding_raised"], False)
 
     def test_invalid_equity_and_changed_offer_status_fail(self):
