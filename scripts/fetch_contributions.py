@@ -16,13 +16,13 @@ PROFILE = "Hetpatel01021111"
 SNAPSHOT = ROOT / "data/contributions.json"
 DAY = timedelta(days=1)
 COUNT = re.compile(r"(No|[1-9]\d{0,2}(?:,\d{3})+|\d+) contributions? on .+", re.I)
-TOTAL = re.compile(r"([\d,]+)\s+contributions?\s+in the last year", re.I)
+TOTAL = re.compile(r"([\d,]+)\s+contributions?\s+in (the last year|\d{4})", re.I)
 
 
 def snapshot(username, days):
     """Validate the rolling calendar before calculating any derived figures."""
     dates = [date.fromisoformat(day["date"]) for day in days]
-    if not 365 <= len(dates) <= 372 or any(
+    if not 365 <= len(dates) <= 373 or any(
         second - first != DAY for first, second in zip(dates, dates[1:])
     ):
         raise ValueError("Expected a continuous year of contribution days")
@@ -65,12 +65,15 @@ def snapshot(username, days):
     }
 
 
-def parse_calendar(markup, username):
-    page = BeautifulSoup(markup, "html.parser")
+def reported_total(page, period):
     heading = page.select_one("#js-contribution-activity-description")
     total_match = TOTAL.fullmatch(heading.get_text(" ", strip=True)) if heading else None
-    if total_match is None:
-        raise ValueError("GitHub did not return a yearly contribution total")
+    if total_match is None or total_match[2].lower() != period:
+        raise ValueError(f"GitHub did not return the contribution total for {period}")
+    return int(total_match[1].replace(",", ""))
+
+
+def calendar_days(page):
     tooltips = {tip["for"]: tip.get_text(" ", strip=True) for tip in page.select("tool-tip[for]")}
     days = []
     for cell in page.select("td.ContributionCalendar-day[data-date]"):
@@ -87,8 +90,40 @@ def parse_calendar(markup, username):
             "count": 0 if number.lower() == "no" else int(number.replace(",", "")),
             "level": int(level),
         })
-    data = snapshot(username, sorted(days, key=lambda day: day["date"]))
-    if data["total_contributions"] != int(total_match[1].replace(",", "")):
+    return sorted(days, key=lambda day: day["date"])
+
+
+def parse_calendar(markup, username, fetch_year=None):
+    page = BeautifulSoup(markup, "html.parser")
+    total = reported_total(page, "the last year")
+    days = calendar_days(page)
+    data = snapshot(username, days)
+    if data["total_contributions"] == total:
+        return data
+
+    # GitHub can count a leading week in the heading that is absent from the
+    # rendered grid. Recover only those dates from its year-specific calendar.
+    grid = page.select_one("[data-graph-url][data-from][data-to]")
+    if fetch_year is None or grid is None:
+        raise ValueError("Daily counts do not add up to GitHub's yearly total")
+    first_shown = date.fromisoformat(data["range"]["start"])
+    start = date.fromisoformat(grid["data-from"][:10])
+    end = date.fromisoformat(grid["data-to"][:10])
+    if not 1 <= (first_shown - start).days <= 7 or end.isoformat() != data["range"]["end"]:
+        raise ValueError("Daily counts do not add up to GitHub's yearly total")
+
+    prefix = []
+    for year in range(start.year, (first_shown - DAY).year + 1):
+        annual = BeautifulSoup(fetch_year(year), "html.parser")
+        annual_days = calendar_days(annual)
+        annual_data = snapshot(username, annual_days)
+        if (annual_data["range"] != {"start": f"{year}-01-01", "end": f"{year}-12-31"}
+                or annual_data["total_contributions"] != reported_total(annual, str(year))):
+            raise ValueError(f"Could not verify GitHub contribution calendar for {year}")
+        prefix.extend(day for day in annual_days if start.isoformat() <= day["date"] < first_shown.isoformat())
+
+    data = snapshot(username, prefix + days)
+    if data["range"]["start"] != start.isoformat() or data["total_contributions"] != total:
         raise ValueError("Daily counts do not add up to GitHub's yearly total")
     return data
 
@@ -102,24 +137,29 @@ def load_snapshot(path=SNAPSHOT, username=PROFILE):
     return data
 
 
-def refresh(username, path=SNAPSHOT):
-    if not re.fullmatch(r"[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?", username):
-        raise ValueError("Invalid GitHub username")
+def fetch_page(url):
     request = Request(
-        f"https://github.com/users/{username}/contributions",
+        url,
         headers={
             "User-Agent": "Public profile calendar refresh",
             "Accept-Language": "en-US",
             "Cache-Control": "no-cache",
         },
     )
+    with urlopen(request, timeout=30) as response:
+        return response.read()
+
+
+def refresh(username, path=SNAPSHOT):
+    if not re.fullmatch(r"[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?", username):
+        raise ValueError("Invalid GitHub username")
+    url = f"https://github.com/users/{username}/contributions"
     try:
         try:
             previous = load_snapshot(path, username)
         except (OSError, ValueError, KeyError, TypeError):
             previous = None
-        with urlopen(request, timeout=30) as response:
-            data = parse_calendar(response.read(), username)
+        data = parse_calendar(fetch_page(url), username, lambda year: fetch_page(f"{url}?to={year}-12-31"))
         if previous and data["range"]["end"] < previous["range"]["end"]:
             raise ValueError("GitHub served an older contribution calendar")
     except (OSError, ValueError) as error:
