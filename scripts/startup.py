@@ -43,13 +43,17 @@ def read_valuation():
 def brand_metrics(metrics):
     website = metrics["website_users"]
     registered = metrics["registered_product_users"]
+    minimum = metrics.get("users_lower_bound")
     if any(value is not None and (type(value) is not int or value < 0)
-           for value in (website, registered)):
+           for value in (website, registered, minimum)):
         raise ValueError("User metrics must be non-negative integers or null")
     if registered is not None:
         return f"{registered:,}", "registered users", ("ShipMitra product registrations.",)
     if website is not None:
         return f"{website:,}", "website users", ("ShipMitra website analytics.",)
+    if minimum is not None:
+        display = f"{minimum // 1000}k+" if minimum >= 1000 and minimum % 1000 == 0 else f"{minimum:,}+"
+        return display, "users", ("ShipMitra user growth.",)
     return "-", "users", ("ShipMitra user growth.", "Verified analytics coming soon.")
 
 

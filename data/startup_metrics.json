@@ -1,5 +1,6 @@
 {
   "company": "ShipMitra",
   "website_users": null,
-  "registered_product_users": null
+  "registered_product_users": null,
+  "users_lower_bound": 5000
 }

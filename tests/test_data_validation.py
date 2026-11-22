@@ -99,6 +99,10 @@ class DataTests(unittest.TestCase):
         self.assertEqual(brand_metrics(blank)[:2], ("-", "users"))
         self.assertEqual(brand_metrics(blank | {"website_users": 1350})[:2], ("1,350", "website users"))
         self.assertEqual(brand_metrics(blank | {"registered_product_users": 0})[:2], ("0", "registered users"))
+        self.assertEqual(
+            brand_metrics(blank | {"users_lower_bound": 5000}),
+            ("5k+", "users", ("ShipMitra user growth.",)),
+        )
         self.assertEqual(metrics["company"], "ShipMitra")
         with self.assertRaises(ValueError):
             brand_metrics(blank | {"website_users": True})
